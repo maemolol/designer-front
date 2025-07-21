@@ -1,0 +1,89 @@
+:root {
+    --whisper: 'Whisper', sans-serif;
+	--lora: 'Lora', sans-serif;
+}
+
+.about-title {
+	font-family: var(--whisper);
+	font-size: 64px;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+}
+
+.about-title:before, .about-title:after{
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid;
+  margin-bottom: 25px;
+}
+.about-title:before {
+  margin-right: 10px
+}
+.about-title:after {
+  margin-left: 10px
+}
+
+.about-painting-frame {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.about-painting {
+	height: 450px;
+	width: auto;
+}
+
+.about-painting-text {
+	font-family: var(--whisper);
+	font-size: 64px;
+}
+
+.about-achievements {
+	display: flex;
+	flex-direction: column;
+	padding-left: 600px;
+	gap: 10px;
+	padding-top: 40px;
+}
+
+.achievement {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	align-items: center;
+}
+
+.achievement-2 {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	align-items: center;
+	width: 50%;
+}
+
+.about-checkbox {
+	height: 50px;
+	width: auto;
+}
+
+.achievement-text {
+	font-family: var(--lora);
+	font-size: 18px;
+}
+
+.about-text {
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	gap: 30px;
+	padding-top: 50px;
+	margin: 0 auto;
+}
+
+.about-subtext {
+	font-family: var(--lora);
+	font-size: 20px;
+}

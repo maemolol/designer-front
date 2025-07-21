@@ -1,0 +1,50 @@
+:root {
+  --whisper: 'Whisper', sans-serif;
+  --lora: 'Lora', sans-serif;
+}
+
+.home-title {
+	font-family: var(--whisper);
+	font-size: 64px;
+	text-align: center;
+	color: #5B3B97;
+	display: flex;
+	flex-direction: row;
+}
+
+.home-title:before, .home-title:after{
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid;
+  margin-bottom: 25px;
+}
+.home-title:before {
+  margin-right: 10px
+}
+.home-title:after {
+  margin-left: 10px
+}
+
+.sub-header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.home-menu {
+	display: flex;
+	flex-direction: row;
+	gap: 200px;
+	padding-bottom: 10px;
+}
+
+.menu-option {
+	font-family: var(--whisper);
+	font-size: 64px;
+	color: #177435;
+}
+
+.home-painting {
+	height: 500px;
+	width: auto;
+}
