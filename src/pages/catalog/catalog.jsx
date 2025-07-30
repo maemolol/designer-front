@@ -3,47 +3,17 @@ import { useNavigate } from 'react-router-dom';
 
 function Catalog() {
     const [dbInfo, setDbInfo] = useState([]);
-    const [selectedSpecies, setSelectedSpecies] = useState('All');
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [showFilter, setShowFilter] = useState(false);
-    const speciesList = ['All', 'Dog', 'Cat', 'Bird', 'Exotic', 'Rodent', 'Fish', 'Farm', 'Reptile'];
 
     const navigate = useNavigate();
-
-    const speciesMap = {
-        Dog: 1,
-        Cat: 2,
-        Exotic: 3,
-        Rodent: 4,
-        Bird: 5,
-        Fish: 6,
-        Farm: 7,
-        Reptile: 8,
-    };
-
-    const formatAge = (months) => {
-        if (!months || isNaN(months)) return null;
-        if (months < 12) {
-            return `${months} months old`;
-        }
-        else if (months > 12) {
-            const years = months / 12;
-            return `${years.toFixed(1)} years old`;
-        }
-        else if (months === 12) {
-            return `1 year old`;
-        }
-    }
 
     const fetchData = (page = 1, species) => {
         setLoading(true);
 
-        let url = `http://localhost:5000/pets?page=${page}&pageSize=25`;
-        if (species && species !== 'All') {
-            url += `&speciesId=${speciesMap[species]}`;
-        }
+        let url = `http://localhost:5000/paintings`;
 
         fetch(url)
             .then(response => response.json())
@@ -54,32 +24,14 @@ function Catalog() {
                 setLoading(false);
             })
             .catch(error => {
-                console.error('Error fetching animals: ', error);
+                console.error('Error fetching paintings: ', error);
                 setLoading(false);
             });
     };
-
-
-    useEffect(() => {
-        fetchData(currentPage, selectedSpecies);
-    }, [currentPage, selectedSpecies]);
-
-
-    const handleSpeciesSelect = (species) => {
-        setSelectedSpecies(species);
-        setCurrentPage(1);
-    };
-
-    const handlePageChange = (direction) => {
-        if (direction === 'prev' && currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        } else if (direction === 'next' && currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-        }
-    };
+	
     const [imgError, setImgError] = useState({});
     useEffect(() => {
-        console.log("Received species ids:", dbInfo.map(a => a.species_id));
+        console.log("Received painting ids:", dbInfo.map(a => a.id));
     }, [dbInfo]);
 
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
