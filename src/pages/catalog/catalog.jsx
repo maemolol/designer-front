@@ -37,7 +37,7 @@ function Catalog() {
 	
     const [imgError, setImgError] = useState({});
     useEffect(() => {
-        console.log("Received painting ids:", dbInfo.map(a => a.category_id));
+        console.log("Received painting ids:", dbInfo.map(a => a.categoryid));
     }, [dbInfo]);
 
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -54,11 +54,6 @@ function Catalog() {
     return (
         <div className="catalog">
             <title>Catalog</title>
-
-            <div className="decorations">
-                {[...Array(17)].map((_, i) => <div key={i} className={`square-${i + 1}`}></div>)}
-                {[...Array(5)].map((_, i) => <p key={i} className={`paws-${i + 1}`}>🐾</p>)}
-            </div>
             <div className={`catalog-content ${showFilter ? 'blur' : ''} fade-in`}>
                 <div className="catalog-items">
                     {loading ? (
@@ -77,7 +72,7 @@ function Catalog() {
                                     )}
 
                                     <img
-                                        src={painting.image_link ? `http://localhost:5000/image/${painting.image_link}` : '/placeholder.jpg'}
+                                        src={painting.imagelink ? `http://localhost:5000/image/${painting.imagelink}` : '/placeholder.jpg'}
                                         // alt={animal.name || 'No photo'}
                                         className="pet-image"
                                         onError={() =>
