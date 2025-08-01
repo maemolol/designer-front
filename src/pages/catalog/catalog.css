@@ -69,7 +69,7 @@ body [data-theme='dark'] {
 
 .catalog-items {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 30px;
   justify-content: center;
@@ -397,7 +397,6 @@ body [data-theme='dark'] {
 .pet-image-wrapper {
   position: relative;
   width: 100%;
-  height: 240px;
   background-color: #eee;
 }
 
@@ -429,7 +428,6 @@ body [data-theme='dark'] {
 .pet-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
   border-bottom: 1px solid #ddd;
 }
@@ -440,7 +438,7 @@ body [data-theme='dark'] {
   flex-direction: column;
   justify-content: space-between;
   gap: 10px;
-  height: 78px;
+  height: 25px;
 }
 
 .pet-breed-age {

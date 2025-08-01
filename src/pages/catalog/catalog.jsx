@@ -8,14 +8,14 @@ function Catalog() {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [showFilter, setShowFilter] = useState(false);
-	const [selectedCategory, setSelectedCategory] = useState("Cute animals");
+	const [selectedCategory, setSelectedCategory] = useState("Fairytales");
 
     const navigate = useNavigate();
 
     const fetchData = (page = 1, species) => {
         setLoading(true);
 
-        let url = `http://localhost:5000/paintings`;
+        let url = `http://localhost:5000/paintings?category=1`;
 
         fetch(url)
             .then(response => response.json())
