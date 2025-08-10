@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './catalog.css';
+import '../catalog/catalog.css';
 
-function Catalog() {
+function Canimals() {
     const [dbInfo, setDbInfo] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
@@ -15,7 +15,7 @@ function Catalog() {
     const fetchData = (page = 1, species) => {
         setLoading(true);
 
-        let url = `http://localhost:5000/paintings?category=1`;
+        let url = `http://localhost:5000/paintings?category=1&page=${page}`;
 
         fetch(url)
             .then(response => response.json())
@@ -34,6 +34,14 @@ function Catalog() {
 	useEffect(() => {
         fetchData(currentPage, selectedCategory);
     }, [currentPage, selectedCategory]);
+	
+	 const handlePageChange = (direction) => {
+        if (direction === 'prev' && currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        } else if (direction === 'next' && currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
 	
     const [imgError, setImgError] = useState({});
     useEffect(() => {
@@ -92,11 +100,16 @@ function Catalog() {
                         ))
                     )}
                 </div>
-
+				
+				<div className="pagination fade-in-up">
+                    <button disabled={currentPage === 1} onClick={() => handlePageChange('prev')}>Previous</button>
+                    <span>Page {currentPage} of {totalPages}</span>
+                    <button disabled={currentPage === totalPages} onClick={() => handlePageChange('next')}>Next</button>
+                </div>
                 
             </div>
         </div>
     );
 }
 
-export default Catalog;
+export default Canimals;

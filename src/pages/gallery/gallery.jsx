@@ -12,11 +12,11 @@ function Gallery() {
 				<div class="gallery-row">
 					<div class="gallery-element">
 						<img src={painting1} alt="painting 1" class="category-painting" />
-						<p class="category-name">these cute animals</p>
+						<a href="/canimals"><p class="category-name">these cute animals</p></a>
 					</div>
 					<div class="gallery-element">
 						<img src={painting2} alt="painting 2" class="category-painting" />
-						<p class="category-name">fairytales</p>
+						<a href="tales"><p class="category-name">fairytales</p></a>
 					</div>
 				</div>
 				<div class="gallery-row">
