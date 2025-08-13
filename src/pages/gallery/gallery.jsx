@@ -16,17 +16,17 @@ function Gallery() {
 					</div>
 					<div class="gallery-element">
 						<img src={painting2} alt="painting 2" class="category-painting" />
-						<a href="tales"><p class="category-name">fairytales</p></a>
+						<a href="/tales"><p class="category-name">fairytales</p></a>
 					</div>
 				</div>
 				<div class="gallery-row">
 					<div class="gallery-element">
 						<img src={painting3} alt="painting 3" class="category-painting" />
-						<p class="category-name">animal planet</p>
+						<a href="/planet"><p class="category-name">animal planet</p></a>
 					</div>
 					<div class="gallery-element">
 						<img src={painting4} alt="painting 4" class="category-painting" />
-						<p class="category-name">flowers</p>
+						<a href="/flowers"><p class="category-name">flowers</p></a>
 					</div>
 				</div>
 			</div>
