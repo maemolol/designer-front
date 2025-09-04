@@ -5,6 +5,7 @@ import painting from "../../assets/about/painting.png";
 function About() {
     return (
         <div class="about">
+			<title>About</title>
             <p class="about-title">About</p>
 			<div class="about-painting-frame">
 				<img src={painting} alt="designer with painting" class="about-painting" />

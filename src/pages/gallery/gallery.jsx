@@ -7,6 +7,7 @@ import painting4 from "../../assets/gallery/flowers.png";
 function Gallery() {
 	return(
 		<div class="gallery">
+			<title>Gallery</title>
 			<p class="gallery-title">Gallery</p>
 			<div class="gallery-grid">
 				<div class="gallery-row">
