@@ -4,7 +4,7 @@ import flowersImage from '../../assets/home/flowers.png';
 function Home() {
   return (
     <div class="home">
-	  <title>Olga Sarukhanova</title>
+	    <title>Olga Sarukhanova</title>
       <p class="home-title">Olga Sarukhanova</p>
       <div class="sub-header">
         <div class="home-menu">

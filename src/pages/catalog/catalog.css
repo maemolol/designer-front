@@ -1,5 +1,6 @@
 :root {
-  --font-family-roboto: 'Lora', sans-serif;
+  --lora: 'Lora', sans-serif;
+  --whisper: 'Whisper', sans-serif;
 }
 
 body {
@@ -63,7 +64,7 @@ body [data-theme='dark'] {
 .catalog {
   display: flex;
   flex-direction: row;
-  font-family: var(--font-family-roboto);
+  font-family: var(--lora);
   background-color: var(--catalog-background-color);
 }
 
@@ -761,4 +762,20 @@ body [data-theme='dark'] {
 
 .catalog-appear {
   animation: fadeInUp 0.5s ease both;
+}
+
+.painting-price {
+  font-family: var(--whisper);
+  font-size: 36px;
+}
+
+.painting-buy {
+  font-family: var(--lora);
+  border: 1px solid black;
+}
+
+.painting-info {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

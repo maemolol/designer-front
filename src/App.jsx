@@ -9,6 +9,7 @@ import Tales from "./pages/tales/catalog";
 import Planet from "./pages/planet/catalog";
 import Flowers from "./pages/flowers/catalog";
 import Gallery from "./pages/gallery/gallery";
+import Basket from "./pages/basket/basket";
 
 function App() {
   return (
@@ -19,10 +20,11 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/canimals" element={<Canimals />} />
-		<Route path="/tales" element={<Tales />} />
-		<Route path="/planet" element={<Planet />} />
-		<Route path="/flowers" element={<Flowers />} />
-		<Route path="/gallery" element={<Gallery />} />
+        <Route path="/tales" element={<Tales />} />
+        <Route path="/planet" element={<Planet />} />
+        <Route path="/flowers" element={<Flowers />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/basket" element={<Basket />} />
       </Routes>
       <Footer />
     </>

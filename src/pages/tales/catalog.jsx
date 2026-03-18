@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { addToBasket } from '../../components/basket/basket';
 import '../catalog/catalog.css';
 
 function Tales() {
@@ -205,8 +206,18 @@ function Tales() {
                 {activePainting.name && (
                 <div style={{ marginTop: '8px', textAlign: 'center', fontWeight: 600 }}>
                     {activePainting.name}
+                    {activePainting.height?.cm && <span> • {activePainting.height.cm}</span>}
+                    {activePainting.width?.cm && <span>x{activePainting.width.cm} cm </span>}
                 </div>
                 )}
+                <div class="painting-info">
+                    {activePainting.sold ? (
+                        <p class="painting-price">SOLD</p>
+                    ): (
+                        <p class="painting-price">€{activePainting.price}</p>
+                    )}
+                    <button class="painting-buy" onClick={addToBasket(activePainting.id)} disabled={activePainting.sold}>Add to basket</button>
+                </div>
             </div>
             </div>
         )}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { addToBasket } from '../../components/basket/basket';
 import '../catalog/catalog.css';
 
 function Planet() {
@@ -11,6 +12,7 @@ function Planet() {
     const [selectedCategory, setSelectedCategory] = useState("Fairytales");
     const [showModal, setShowModal] = useState(false);
     const [activePainting, setActivePainting] = useState(null);
+    const apiLink = "http://localhost:5000";
 
     const openModal = (painting) => {
         setActivePainting(painting);
@@ -26,7 +28,7 @@ function Planet() {
     const fetchData = (page = 1) => {
         setLoading(true);
 
-        let url = `http://localhost:5000/paintings?category=3&page=${page}`;
+        let url = `${apiLink}/paintings?category=3&page=${page}`;
 
         fetch(url)
         .then(response => response.json())
@@ -109,7 +111,7 @@ function Planet() {
                     <img
                         src={
                         painting.imagelink
-                            ? `http://localhost:5000/image/${painting.imagelink}`
+                            ? `${apiLink}/image/${painting.imagelink}`
                             : '/placeholder.jpg'
                         }
                         className="pet-image"
@@ -190,7 +192,7 @@ function Planet() {
                 <img
                 src={
                     activePainting.imagelink
-                    ? `http://localhost:5000/image/${activePainting.imagelink}`
+                    ? `${apiLink}/image/${activePainting.imagelink}`
                     : '/placeholder.jpg'
                 }
                 alt={activePainting.name || 'Painting'}
@@ -205,8 +207,18 @@ function Planet() {
                 {activePainting.name && (
                 <div style={{ marginTop: '8px', textAlign: 'center', fontWeight: 600 }}>
                     {activePainting.name}
+                    {activePainting.height?.cm && <span> • {activePainting.height.cm}</span>}
+                    {activePainting.width?.cm && <span>x{activePainting.width.cm} cm </span>}
                 </div>
                 )}
+                <div class="painting-info">
+                    {activePainting.sold ? (
+                        <p class="painting-price">SOLD</p>
+                    ): (
+                        <p class="painting-price">€{activePainting.price}</p>
+                    )}
+                    <button class="painting-buy" onClick={addToBasket(activePainting.id)} disabled={activePainting.sold}>Add to basket</button>
+                </div>
             </div>
             </div>
         )}
