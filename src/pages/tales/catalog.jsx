@@ -12,6 +12,7 @@ function Tales() {
     const [selectedCategory, setSelectedCategory] = useState("Fairytales");
     const [showModal, setShowModal] = useState(false);
     const [activePainting, setActivePainting] = useState(null);
+    const apiLink = process.env.REACT_APP_BACKEND_URI;
 
     const openModal = (painting) => {
         setActivePainting(painting);
@@ -27,7 +28,7 @@ function Tales() {
     const fetchData = (page = 1) => {
         setLoading(true);
 
-        let url = `http://localhost:5000/paintings?category=2&page=${page}`;
+        let url = `${apiLink}/paintings?category=2&page=${page}`;
 
         fetch(url)
         .then(response => response.json())
@@ -110,7 +111,7 @@ function Tales() {
                     <img
                         src={
                         painting.imagelink
-                            ? `http://localhost:5000/image/${painting.imagelink}`
+                            ? `${apiLink}/image/${painting.imagelink}`
                             : '/placeholder.jpg'
                         }
                         className="pet-image"
@@ -191,7 +192,7 @@ function Tales() {
                 <img
                 src={
                     activePainting.imagelink
-                    ? `http://localhost:5000/image/${activePainting.imagelink}`
+                    ? `${apiLink}/image/${activePainting.imagelink}`
                     : '/placeholder.jpg'
                 }
                 alt={activePainting.name || 'Painting'}

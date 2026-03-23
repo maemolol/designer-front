@@ -12,7 +12,7 @@ function Planet() {
     const [selectedCategory, setSelectedCategory] = useState("Fairytales");
     const [showModal, setShowModal] = useState(false);
     const [activePainting, setActivePainting] = useState(null);
-    const apiLink = "http://localhost:5000";
+    const apiLink = process.env.REACT_APP_BACKEND_URI;
 
     const openModal = (painting) => {
         setActivePainting(painting);

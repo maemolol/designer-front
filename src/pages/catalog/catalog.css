@@ -772,6 +772,7 @@ body [data-theme='dark'] {
 .painting-buy {
   font-family: var(--lora);
   border: 1px solid black;
+  border-radius: 6px;
 }
 
 .painting-info {
