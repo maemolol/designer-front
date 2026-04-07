@@ -6,6 +6,7 @@ function Basket() {
     const [loading, setLoading] = useState(true);
     const [paintings, setPaintings] = useState([]);
     const [email, setEmail] = useState("");
+    const apiLink = process.env.REACT_APP_BACKEND_URI || "/api";
 
     const basket = getBasket();
 
@@ -20,7 +21,7 @@ function Basket() {
 
         try {
             const requests = basket.items.map(id =>
-                fetch(`http://localhost:5000/paintings/${id}`).then(res => {
+                fetch(`${apiLink}/paintings/${id}`).then(res => {
                     if (!res.ok) throw new Error("Failed fetch");
                     return res.json();
                 })
@@ -59,7 +60,7 @@ function Basket() {
         }
 
         try {
-            const response = await fetch("http://localhost:5000/basket", {
+            const response = await fetch(`${apiLink}/basket`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -102,6 +103,7 @@ function Basket() {
                             <div class="basket-item" key={p.id}>
                                 <p class="basket-name">{p.name}</p>
                                 <p class="basket-price">€{p.price}</p>
+                                <button class="basket-remove" type="submit" onClick={removeFromBasket(p.id)}>Remove</button>
                             </div>
                         ))
                     )}

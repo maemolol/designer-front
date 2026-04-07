@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.df1eea40.css",
+    "main.js": "/static/js/main.da9577a8.js",
+    "static/media/animal planet.png": "/static/media/animal planet.81617abe73abb9ea2a63.png",
+    "static/media/flowers.png": "/static/media/flowers.3c064f789e0495d43537.png",
+    "static/media/these cute animals.png": "/static/media/these cute animals.910e83baf79cca356b85.png",
+    "static/media/fairytales.png": "/static/media/fairytales.5793987c96936eaa43fc.png",
+    "static/media/painting.png": "/static/media/painting.25ee2faa457945414620.png",
+    "static/media/home-icon.png": "/static/media/home-icon.ecde1aa5554505663922.png",
+    "static/media/facebook.png": "/static/media/facebook.ea99080bde07ea9f27ea.png",
+    "index.html": "/index.html",
+    "main.df1eea40.css.map": "/static/css/main.df1eea40.css.map",
+    "main.da9577a8.js.map": "/static/js/main.da9577a8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df1eea40.css",
+    "static/js/main.da9577a8.js"
+  ]
+}

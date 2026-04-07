@@ -12,7 +12,7 @@ function Canimals() {
     const [selectedCategory, setSelectedCategory] = useState("Fairytales");
     const [showModal, setShowModal] = useState(false);
     const [activePainting, setActivePainting] = useState(null);
-    const apiLink = process.env.REACT_APP_BACKEND_URI;
+    const apiLink = process.env.REACT_APP_BACKEND_URI || "/api";
 
     const openModal = (painting) => {
         setActivePainting(painting);

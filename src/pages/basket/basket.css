@@ -78,3 +78,21 @@
 .basket-price {
     font-weight: bold;
 }
+
+.basket-remove {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 36px;
+    font-family: var(--lora);
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.basket-remove:disabled {
+    background-color: gray;
+    color: white;
+}
