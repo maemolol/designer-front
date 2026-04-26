@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getBasket, removeFromBasket, clearBasket } from '../../components/basket/basket';
+import { loadStripe } from "@stripe/stripe-js";
 import './basket.css';
+
+const stripePromise = loadStripe("pk_test_51TJ95D6aFBaMvggQu93elAi5O2Pnl5mUDnPduv1REoiFu5xRZsmBzVayFOBjuXfUsrOb65nMlVidQFl1Ywyockko00laDBJ5Tz");
 
 function Basket() {
     const [loading, setLoading] = useState(true);
@@ -8,52 +11,69 @@ function Basket() {
     const [email, setEmail] = useState("");
     const apiLink = process.env.REACT_APP_BACKEND_URI || "/api";
 
-    const basket = getBasket();
-
-    useEffect(() => {
-    const loadPaintings = async () => {
+    async function handleStripeCheckout() {
         const basket = getBasket();
 
-        if (basket.items.length === 0) {
-            setLoading(false);
-            return;
-        }
+        const response = await fetch(`${apiLink}/pay`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email,
+                paintingIds: basket.items
+            })
+        });
 
-        try {
-            const requests = basket.items.map(id =>
-                fetch(`${apiLink}/paintings/${id}`).then(res => {
-                    if (!res.ok) throw new Error("Failed fetch");
-                    return res.json();
-                })
-            );
+        const data = await response.json();
 
-            const results = await Promise.all(requests);
+        window.location.href = data.url;
+    }
 
-            results.forEach(p => {
-                if (p.sold) {
-                    removeFromBasket(p.id);
-                }
-            });
+    useEffect(() => {
+        const loadPaintings = async () => {
+            const basket = getBasket();
 
-            const availableIds = results
-                .filter(p => !p.sold)
-                .map(p => p.id);
+            if (basket.items.length === 0) {
+                setLoading(false);
+                return;
+            }
 
-            localStorage.setItem("basket", JSON.stringify({ items: availableIds }));
+            try {
+                const requests = basket.items.map(id =>
+                    fetch(`${apiLink}/paintings/${id}`).then(res => {
+                        if (!res.ok) throw new Error("Failed fetch");
+                        return res.json();
+                    })
+                );
 
-            setPaintings(results.filter(p => !p.sold));
+                const results = await Promise.all(requests);
 
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
-    };
+                results.forEach(p => {
+                    if (p.sold) {
+                        removeFromBasket(p.id);
+                    }
+                });
 
-    loadPaintings();
-}, []);
+                const availableIds = results
+                    .filter(p => !p.sold)
+                    .map(p => p.id);
 
-    async function checkout() {
+                localStorage.setItem("basket", JSON.stringify({ items: availableIds }));
+
+                setPaintings(results.filter(p => !p.sold));
+
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadPaintings();
+    }, []);
+
+    /* async function checkout() {
         if (!email) {
             alert("Please enter your email.");
             return;
@@ -88,7 +108,7 @@ function Basket() {
             console.error(error);
             alert("Checkout failed: " + error.message);
         }
-    }
+    } */
 
     return (
         <div class="basket">
@@ -103,7 +123,7 @@ function Basket() {
                             <div class="basket-item" key={p.id}>
                                 <p class="basket-name">{p.name}</p>
                                 <p class="basket-price">€{p.price}</p>
-                                <button class="basket-remove" type="submit" onClick={removeFromBasket(p.id)}>Remove</button>
+                                <button class="basket-remove" type="submit" onClick={() => removeFromBasket(p.id)}>Remove</button>
                             </div>
                         ))
                     )}
@@ -116,7 +136,7 @@ function Basket() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <button type="submit" class="basket-buy" disabled={loading} onClick={checkout}>Buy now</button>
+                <button type="button" class="basket-buy" disabled={loading} onClick={handleStripeCheckout}>Buy now</button>
             </div>
         </div>
     );

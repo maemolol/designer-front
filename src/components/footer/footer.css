@@ -3,9 +3,21 @@
 	flex-direction: row;
 	justify-content: center;
 	padding-top: 20px;
+	gap: 10px;
 }
 
 .footer .home-icon {
 	height: 100px;
 	width: auto;
+}
+
+.footer .basket-icon {
+	height: 100px;
+	width: auto;
+}
+
+.footer .basket-length {
+	padding: 1px;
+	border: 3px solid black;
+	border-radius: 6px;
 }
